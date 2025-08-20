@@ -1,4 +1,4 @@
-# .github/workflows/trigger_repo_b.yml in Repository A
+# .github/workflows/trigger_repo_b.yml
 name: Trigger Repository B
 
 on:
@@ -6,18 +6,24 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   trigger:
-   runs_on: ubuntu-latest
-   steps:
-   - name: trigger b
-     uses: actions/github-script@v6
-     with:
-       github-token: ${{ secrets.PERSONAL_TOKEN }}
-       script: |
-         await github.rest.actions.createWorkflowDispatch({
-          owner: 'rzeeser',
-          repo: 'RepoB',
-          workflow_id: 'triggered_by_repo_a.yml',
-          ref: 'main'
-         })
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dispatch workflow in RepoB
+        uses: actions/github-script@v7
+        with:
+          # A PAT from RepoB's owner with "repo" and "workflow" scopes
+          github-token: ${{ secrets.PERSONAL_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: 'rzfeeser',           
+              repo: 'RepoB',
+              workflow_id: 'triggered_by_repo_a.yml',
+              ref: 'main',
+              inputs: {}                      // optional: pass inputs if the target workflow expects them
+            })
