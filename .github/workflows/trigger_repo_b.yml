@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Create a file
-        run: echo "This is the content of my generated file." > generated-file.txt
+        run: echo "This is the content of my generated file. ${{ github.event.client_payload.run_id }}" > generated-file.txt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
