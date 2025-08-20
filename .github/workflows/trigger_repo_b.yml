@@ -1,25 +1,23 @@
+# Author: RZFeeser
 # .github/workflows/trigger_repo_b.yml
-name: Trigger Repository B
+name: RepoA Triggers RepoB
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
+  workflow_dispatch:    # button press
 
 permissions:
   contents: read
 
 jobs:
-  trigger:
+  trigger_repo_b:      # this is the name of the job
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create a file
-        run: echo "This is the content of my generated file. ${{ github.event.client_payload.run_id }}" > generated-file.txt
+      - name: Create a file (this will be our artifact)
+        run: echo "This is the content of my generated file. > generated-file.txt
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4      # if you UPLOAD artifact with vX you should DOWNLOAD with vX
         with:
           name: my-generated-artifact
           path: generated-file.txt
