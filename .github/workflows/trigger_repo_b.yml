@@ -1,0 +1,19 @@
+ # .github/workflows/trigger_repo_b.yml in Repository A
+    name: Trigger Repository B
+
+    on:
+      push:
+        branches:
+          - main
+
+    jobs:
+      trigger:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Dispatch event to Repository B
+            run: |
+              curl -X POST \
+              -H "Accept: application/vnd.github.v3+json" \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              https://api.github.com/repos/rzfeeser/RepoB/dispatches \
+              -d '{"event_type": "build_triggered_by_repo_a", "client_payload": {"source_repo": "RepositoryA"}}'
