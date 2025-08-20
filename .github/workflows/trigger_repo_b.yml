@@ -1,23 +1,23 @@
- # .github/workflows/trigger_repo_b.yml in Repository A
-    name: Trigger Repository B
+# .github/workflows/trigger_repo_b.yml in Repository A
+name: Trigger Repository B
 
-    on:
-      push:
-        branches:
-          - main
+on:
+  push:
+    branches:
+      - main
 
-    jobs:
-     trigger:
-       runs_on: ubuntu-latest
-       steps:
-       - name: trigger b
-         uses: actions/github-script@v6
-         with:
-           github-token: ${{ secrets.PERSONAL_TOKEN }}
-           script: |
-             await github.rest.actions.createWorkflowDispatch({
-              owner: 'rzeeser',
-              repo: 'RepoB',
-              workflow_id: 'triggered_by_repo_a.yml',
-              ref: 'main'
-             })
+jobs:
+  trigger:
+   runs_on: ubuntu-latest
+   steps:
+   - name: trigger b
+     uses: actions/github-script@v6
+     with:
+       github-token: ${{ secrets.PERSONAL_TOKEN }}
+       script: |
+         await github.rest.actions.createWorkflowDispatch({
+          owner: 'rzeeser',
+          repo: 'RepoB',
+          workflow_id: 'triggered_by_repo_a.yml',
+          ref: 'main'
+         })
