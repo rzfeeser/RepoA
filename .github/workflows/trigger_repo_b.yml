@@ -8,10 +8,8 @@ on:
 jobs:
   trigger_repo_b:      # this is the name of the job
     # setting permissions for GITHUB_TOKEN
-    permissions:
-      contents: write
-      pull-requests: write
-      repository-projects: write
+    permissions:       # see https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#permissions
+      actions: write   # we want to trigger an action in repo B
     runs-on: ubuntu-latest
 
     steps:
