@@ -16,7 +16,7 @@ jobs:
       deployments: write
       id-token: write
       issues: write
-      models: write
+      models: read
       discussions: write
       packages: write
       pages: write
