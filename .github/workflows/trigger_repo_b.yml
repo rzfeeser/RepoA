@@ -8,11 +8,8 @@ on:
 jobs:
   trigger_repo_b:      # this is the name of the job
     # setting permissions for GITHUB_TOKEN
-    permissions:
-      contents: read
-      packages: write
-      attestations: write
-      id-token: write
+    permissions: write-all
+    
     runs-on: ubuntu-latest
 
     steps:
