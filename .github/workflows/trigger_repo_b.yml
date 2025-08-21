@@ -5,14 +5,9 @@ name: RepoA Triggers RepoB
 on:
   workflow_dispatch:    # button press
 
-  permissions:
-    contents: read
-    packages: write
-    attestations: write
-    id-token: write
-
 jobs:
   trigger_repo_b:      # this is the name of the job
+    # setting permissions for GITHUB_TOKEN
     permissions:
       contents: read
       packages: write
