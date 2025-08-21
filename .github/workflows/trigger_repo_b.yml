@@ -22,16 +22,14 @@ jobs:
       - name: Dispatch workflow in RepoB
         uses: actions/github-script@v7
         with:
-          # PAT from RepoB's owner with "repo" and "workflow" scopes
           github-token: ${{ secrets.PERSONAL_TOKEN }}
           script: |
-            // Note: hyphenated keys must be quoted, and inputs must be strings.
             await github.rest.actions.createWorkflowDispatch({
               owner: 'rzfeeser',
               repo: 'RepoB',
               workflow_id: 'triggered_by_repo_a.yml',
               ref: 'main',
               inputs: {
-                "'artifact-run-id': '${{ github.run_id }}'"
+                "artifact-run-id": "${{ github.run_id }}"
               }
             })
