@@ -32,6 +32,6 @@ jobs:
               workflow_id: 'triggered_by_repo_a.yml',
               ref: 'main',
               inputs: {
-                'artifact-run-id': '${{ github.run_id }}'
+                "artifact-run-id: ${{ github.run_id }}"
               }
             })
