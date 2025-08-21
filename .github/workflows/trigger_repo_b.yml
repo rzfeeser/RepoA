@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Create a file with current datetime (this will be our artifact)
         run: |
-          echo "Repo A created this file" > generated-file.txt
+          echo "github.com/rzfeeser/RepoA created this file" > generated-file.txt
           date >> generated-file.txt        # date is the linux command to generate a timestamp and we write that into a file
 
       - name: Upload artifact
